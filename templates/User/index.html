@@ -18,7 +18,7 @@
           { id: 'age', name: 'Age' },
           { id: 'address', name: 'Address', sort: false },
           { id: 'id', name: 'Action', formatter: (cell, row) => {
-            return gridjs.html('<a href="">' + cell + '</a>');
+            return gridjs.html('<a href="' + cell + '"> Edit </a>');
           }},
         ],
         server: {
