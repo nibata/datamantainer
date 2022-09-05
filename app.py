@@ -21,7 +21,7 @@ app.register_blueprint(group_bp, url_prefix='/groups')
 @app.route('/')
 def index():
     app.logger.info("HELLO WORLD!")
-    return render_template('index.html')
+    return render_template('default/index.html')
 
 
 if __name__ == '__main__':

@@ -16,8 +16,16 @@ class User(db.Model):
         return {
                     'id': self.id,
                     'name': self.name,
-                    'city': self.city,
-                    'state': self.state,
+                    'age': self.age,
                     'address': self.address,
                     'last_name': self.last_name
+               }
+
+    def to_dict(self):
+        return {
+                    'name': self.name,
+                    'age': self.age,
+                    'address': self.address,
+                    'last_name': self.last_name,
+                    'id': self.id
                }
