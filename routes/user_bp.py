@@ -1,5 +1,5 @@
 from flask import Blueprint
-from controllers.UserController import index, store, show, update, delete, data
+from controllers.UserController import index, store, show, update, delete, show_all
 
 user_bp = Blueprint('user_bp', __name__)
 
@@ -13,4 +13,4 @@ user_bp.route('/<int:user_id>/edit', methods=['POST'])(update)
 
 user_bp.route('/<int:user_id>', methods=['DELETE'])(delete)
 
-user_bp.route('/data', methods=['GET'])(data)
+user_bp.route('/data', methods=['GET'])(show_all)

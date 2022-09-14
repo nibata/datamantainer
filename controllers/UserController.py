@@ -25,7 +25,7 @@ def delete(userId):
     ...
 
 
-def data():
+def show_all():
     query = User.query
 
     # search filter

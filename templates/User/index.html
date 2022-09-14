@@ -5,21 +5,27 @@
 {% endblock %}
 
 {% block scripts %}
+  <!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/ui@latest/dist/tailwind-ui.min.css"-->
+
   <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
     <script>
       const updateUrl = (prev, query) => {
         return prev + (prev.indexOf('?') >= 0 ? '&' : '?') + new URLSearchParams(query).toString();
       };
-
+      // Para Conseguir usar el 100% de la tabla hay que ingeniarselas para que la suma de los width de las columnas sea 85%
       new gridjs.Grid({
         columns: [
-          { id: 'name', name: 'Name' },
-          { id: 'last_name', name: 'Last Name'},
-          { id: 'age', name: 'Age' },
-          { id: 'address', name: 'Address', sort: false },
+          { id: 'name', name: 'Name', width: '20%'},
+          { id: 'last_name', name: 'Last Name', width: '20%'},
+          { id: 'age', name: 'Age', width: '5%'},
+          { id: 'address', name: 'Address', sort: false, width: '35%'},
           { id: 'id', name: 'Action', formatter: (cell, row) => {
-            return gridjs.html('<a href="' + cell + '"> Edit </a>');
-          }},
+            return gridjs.html('<a href="' + cell + '" class="btn btn-primary btn-sm" role="button"> Edit </a>');
+            //return gridjs.h('button', {
+            //                            className: 'py-1 mb-2 px-2 border rounded-md text-white bg-blue-600',
+            //                            onClick: () => alert(`Editing ${cell}`)
+            //                          }, 'Edit');
+            }, width: '5%'},
         ],
         server: {
           url: '/users/data',
