@@ -8,7 +8,7 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    age = db.Column(db.String(120))
+    age = db.Column(db.Integer)
     address = db.Column(db.String(120))
     last_name = db.Column(db.String)
 
