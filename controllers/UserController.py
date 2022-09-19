@@ -13,15 +13,16 @@ def store():
     ...
 
 
-def show(userId):
+def show(user_id):
     ...
 
 
-def update(userId):
-    ...
+def update(user_id):
+    users = User.query
+    return render_template("/User/update.html", title=f"Tabla de Usuarios {user_id}", users=users)
 
 
-def delete(userId):
+def delete(user_id):
     ...
 
 

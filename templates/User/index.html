@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div id="table"></div>
+    <h1>{{ title }}</h1>
+    <div id="table"></div>
 {% endblock %}
 
 {% block scripts %}
@@ -20,11 +21,7 @@
           { id: 'age', name: 'Age', width: '5%'},
           { id: 'address', name: 'Address', sort: false, width: '35%'},
           { id: 'id', name: 'Action', formatter: (cell, row) => {
-            return gridjs.html('<a href="' + cell + '" class="btn btn-primary btn-sm" role="button"> Edit </a>');
-            //return gridjs.h('button', {
-            //                            className: 'py-1 mb-2 px-2 border rounded-md text-white bg-blue-600',
-            //                            onClick: () => alert(`Editing ${cell}`)
-            //                          }, 'Edit');
+            return gridjs.html('<a href="' + cell + '/edit" class="btn btn-primary btn-sm" role="button"> Edit </a>');
             }, width: '5%'},
         ],
         server: {
