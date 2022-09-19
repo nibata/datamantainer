@@ -1,4 +1,5 @@
 from services.database import db
+from wtforms_alchemy import ModelForm
 
 
 class User(db.Model):
@@ -29,3 +30,8 @@ class User(db.Model):
                     'last_name': self.last_name,
                     'id': self.id
                }
+
+
+class UserForm(ModelForm):
+    class Meta:
+        model = User

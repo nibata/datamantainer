@@ -1,6 +1,6 @@
 import sys
 from flask import render_template, redirect, url_for, request, abort
-from models.User import User
+from models.User import User, UserForm
 from services.database import db
 
 
@@ -10,7 +10,12 @@ def index():
 
 
 def store():
-    ...
+    form = UserForm(request.form)
+
+    if request.method == "POST":
+        pass
+
+    return render_template("/User/store.html", form=form)
 
 
 def show(user_id):
