@@ -4,7 +4,7 @@
 
 <form method="POST" action="{{url_for('index')}}">
   {% for field in form %}
-  <p>
+  <div class="form-group">
     {{ field.label }}
     {{ field }}
     <span>
@@ -14,9 +14,9 @@
         {% endfor %}
       {% endif %}
     </span>
-  </p>
+  </div>
   {% endfor %}
-  <button type="submit">Enviar</button>
+  <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
 
 {% endblock %}

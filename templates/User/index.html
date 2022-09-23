@@ -19,10 +19,10 @@
           { id: 'name', name: 'Name', width: '20%'},
           { id: 'last_name', name: 'Last Name', width: '20%'},
           { id: 'age', name: 'Age', width: '5%'},
-          { id: 'address', name: 'Address', sort: false, width: '35%'},
+          { id: 'address', name: 'Address', sort: false, width: '25%'},
           { id: 'id', name: 'Action', formatter: (cell, row) => {
-            return gridjs.html('<a href="' + cell + '/edit" class="btn btn-primary btn-sm" role="button"> Edit </a>');
-            }, width: '5%'},
+              return gridjs.html('<a href="' + cell + '/edit" class="btn btn-primary btn-sm" role="button"> Edit </a> <a href="' + cell + '/delete" class="btn btn-primary btn-sm" role="button"> Delete </a>');
+            }, width: '10%'},
         ],
         server: {
           url: '/users/data',
