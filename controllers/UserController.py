@@ -11,9 +11,6 @@ def index():
 
 def store():
     form = UserForm(request.form)
-    for field in form:
-        for property, value in vars(field).items():
-            print(property, ":", value)
 
     if request.method == "POST":
         pass

@@ -27,11 +27,4 @@ class User(db.Model):
 class UserForm(ModelForm):
     class Meta:
         model = User
-        field_args = {
-            "name": {"render_kw": {"class": "form-control",
-                                   "placeholder":"First name"}},
-            "address": {"render_kw": {"class": "form-control",
-                                      "placeholder": "Address"}},
-            "age": {"render_kw": {"class": "form-control"}},
-            "last_name": {"render_kw": {"class": "form-control",
-                                        "placeholder": "Last Name"}}}
+        
