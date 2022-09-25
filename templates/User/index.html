@@ -2,6 +2,7 @@
 
 {% block content %}
     <h1>{{ title }}</h1>
+    <a href="{{ store_url }}" class="btn btn-primary">Crear </a>
     <div id="table"></div>
 {% endblock %}
 
@@ -11,6 +12,7 @@
       const updateUrl = (prev, query) => {
         return prev + (prev.indexOf('?') >= 0 ? '&' : '?') + new URLSearchParams(query).toString();
       };
+
       // Para Conseguir usar el 100% de la tabla hay que ingeniarselas para que la suma de los width de las columnas sea 85%
       new gridjs.Grid({
         columns: [
@@ -18,15 +20,31 @@
           { id: "last_name", name: "Last Name", width: "20%"},
           { id: "age", name: "Age", width: "5%"},
           { id: "address", name: "Address", sort: false, width: "25%"},
-          { id: "id", name: "Action", formatter: (cell, row) => {
+          { id: "id", name: "Action", sort: false, formatter: (cell, row) => {
               return gridjs.html("<a href='" + cell + "/edit' class='btn btn-primary btn-sm' role='button'> Edit </a> <a href='" + cell + "/delete' class='btn btn-primary btn-sm' role='button'> Delete </a>");
             }, width: "10%"},
         ],
+
+        language: {
+          "search": {
+            "placeholder": "🔍 Buscar..."
+          },
+          "pagination": {
+            "previous": "Previo",
+            "next": "Siguiente",
+            "of": "de",
+            "to": "al",
+            "showing": "Mostrando",
+            "results": () => "Resultados"
+          }
+        },
+
         server: {
           url: "/users/data",
           then: results => results.data,
           total: results => results.total,
         },
+
         search: {
           enabled: true,
           server: {
@@ -35,17 +53,19 @@
             },
           },
         },
+
         sort: {
           enabled: true,
           multiColumn: true,
           server: {
             url: (prev, columns) => {
-              const columnIds = ["name", "last_name", "age", "address"];
+              const columnIds = ["name", "last_name", "age"];
               const sort = columns.map(col => (col.direction === 1 ? '+' : '-') + columnIds[col.index]);
               return updateUrl(prev, {sort});
             },
           },
         },
+
         pagination: {
           enabled: true,
           server: {
@@ -55,5 +75,6 @@
           },
         },
       }).render(document.getElementById("table"));
+
     </script>
 {% endblock %}
