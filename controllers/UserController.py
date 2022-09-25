@@ -1,5 +1,5 @@
 import sys
-from flask import render_template, redirect, url_for, request, abort
+from flask import render_template, redirect, url_for, request, abort, flash
 from models.User import User, UserForm
 from services.database import db
 from modules.data_table_show import show_all_model
@@ -13,7 +13,7 @@ def store():
     form = UserForm(request.form)
 
     if request.method == "POST":
-        pass
+        flash("HELLO WORLD", category="info")
 
     return render_template("/User/store.html", form=form)
 
