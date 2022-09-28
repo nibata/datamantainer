@@ -22,6 +22,7 @@
       {% endif %}
     {% endwith %}
     <div>
+      {% block modal_form %}{% endblock %}
       {% block content %}{% endblock %}
     </div>
     {% block scripts %}{% endblock %}

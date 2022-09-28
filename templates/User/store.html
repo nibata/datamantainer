@@ -1,26 +1,54 @@
 {% extends "base.html" %}
 
-{% block content %}
-
-<form method="POST" action="{{url_for('user_bp.store')}}">
-  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-  {% for field in form %}
-  <div class="form-group row">
-    {{ field.label(class="col-sm-2 col-form-label") }}
-    <div class="col-sm-10">
-      {{ field(class="form-control") }}
+{% block modal_form %}
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ title }}</h5>
+                <!--button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button-->
+                <a href="{{ back_url }}" class="btn-close" aria-label="Close"></a>
+            </div>
+            <div class="modal-body">
+              <form method="POST" action="{{url_for('user_bp.store')}}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                {% for field in form %}
+                <div class="form-group row">
+                  {{ field.label(class="col-sm-2 col-form-label") }}
+                  <div class="col-sm-10">
+                    {{ field(class="form-control") }}
+                  </div>
+                  <span>
+                    {% if field.errors %}
+                      {% for error in field.errors %}
+                        {{ error }}
+                      {% endfor %}
+                    {% endif %}
+                  </span>
+                </div>
+                <br>
+                {% endfor %}
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Enviar</button>
+                  <a href="{{ back_url }}" class="btn btn-secondary">Cerrar</a>
+                </div>
+              </form>
+            </div>   
+        </div>
     </div>
-    <span>
-      {% if field.errors %}
-        {% for error in field.errors %}
-          {{ error }}
-        {% endfor %}
-      {% endif %}
-    </span>
-  </div>
-  <br>
-  {% endfor %}
-  <button type="submit" class="btn btn-primary">Enviar</button>
-</form>
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+    <script>
+    $(document).ready(function () {
+        $("#exampleModal").modal("show")
+
+    })
+    </script>
+
 
 {% endblock %}

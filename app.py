@@ -9,8 +9,6 @@ from routes.user_bp import user_bp
 from routes.group_bp import group_bp
 
 
-IS_DEVELOPNET = True
-
 # Aplicación
 app = Flask(__name__)
 app.config.from_object("config")
@@ -34,4 +32,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(debug=IS_DEVELOPNET)
+    app.run()

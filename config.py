@@ -1,6 +1,6 @@
+from distutils.debug import DEBUG
 import os
 
-SECRET_KEY = os.urandom(32)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -10,3 +10,5 @@ SQLALCHEMY_DATABASE_URI = "postgresql://postgres:postgrespw@localhost:55000/flas
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 SECRET_KEY = "TO DREAM AN IMPOSSIBLE DREAM, TO FIGHT AN UNBEATABLE FOE, TO BEAR WITH UNBEARABLE SORROW, AND TO RUN WHERE THE BRAVE DARE NOT GO"
+
+DEBUG = True

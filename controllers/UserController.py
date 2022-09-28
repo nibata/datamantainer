@@ -1,5 +1,5 @@
 import sys
-from flask import render_template, redirect, url_for, request, abort, flash
+from flask import render_template, redirect, url_for, request, abort, flash, current_app
 from models.User import User, UserForm
 from services.database import db
 from modules.data_table_show import show_all_model
@@ -21,12 +21,13 @@ def store():
     if request.method == "POST":
         if form.validate():
             flash(request.form, category="info")
+            current_app.logger.info("Se crea registro!!!!!")
             return redirect(url_for("user_bp.index"))
 
         else:
             flash("Error en la validación de datos", category="danger")
 
-    return render_template("/User/store.html", form=form)
+    return render_template("/User/store.html", title="Crear Usuario", back_url=url_for('user_bp.index'), form=form)
 
 
 def show(user_id):
