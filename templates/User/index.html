@@ -2,8 +2,7 @@
 
 {% block content %}
     <h1>{{ title }}</h1>
-    <a href="{{ store_url }}" class="btn btn-primary">Crear </a>
-    <div id="TEST_DISPLAY"></div>
+    <a id="create_user_form" href="{{ store_url }}" class="btn btn-primary">Crear </a>
     <div id="table"></div>
 {% endblock %}
 
@@ -11,12 +10,12 @@
   <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
     <script>
       const updateUrl = (prev, query) => {
-        var search_text_aux = prev.substring(prev.indexOf('search=') + 7, prev.indexOf('&'));
+        var search_text_aux = prev.substring(prev.indexOf('search='), prev.indexOf('&'));
         var search_text = (search_text_aux == "/users" ? "" : search_text_aux)
-        document.getElementById("TEST_DISPLAY").innerHTML = search_text;
+        document.getElementById("create_user_form").href = "{{ store_url }}?" + search_text;
         return prev + (prev.indexOf('?') >= 0 ? '&' : '?') + new URLSearchParams(query).toString();
       };
-
+      
       // Para Conseguir usar el 100% de la tabla hay que ingeniarselas para que la suma de los width de las columnas sea 85%
       new gridjs.Grid({
         columns: [
@@ -25,7 +24,7 @@
           { id: "age", name: "Age", width: "5%"},
           { id: "address", name: "Address", sort: false, width: "25%"},
           { id: "id", name: "Action", sort: false, formatter: (cell, row) => {
-              return gridjs.html("<a href='" + cell + "/edit' class='btn btn-primary btn-sm' role='button'> Edit </a> <a href='" + cell + "/delete' class='btn btn-primary btn-sm' role='button'> Delete </a>");
+              return gridjs.html("<a id='edit_user_form' href='" + cell + "/edit' class='btn btn-primary btn-sm' role='button'> Edit </a> <a href='" + cell + "/delete' class='btn btn-primary btn-sm' role='button'> Delete </a>");
             }, width: "10%"},
         ],
 

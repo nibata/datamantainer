@@ -17,17 +17,17 @@ def index():
 
 def store():
     form = UserForm(request.form)
+    search_param = request.args.get("search")
 
     if request.method == "POST":
         if form.validate():
             flash(request.form, category="info")
-            current_app.logger.info("Se crea registro!!!!!")
             return redirect(url_for("user_bp.index"))
 
         else:
             flash("Error en la validación de datos", category="danger")
 
-    return render_template("/User/store.html", title="Crear Usuario", back_url=url_for('user_bp.index'), form=form)
+    return render_template("/User/store.html", title="Crear Usuario", back_url=url_for('user_bp.index'), search_key_word=search_param, form=form)
 
 
 def show(user_id):
@@ -36,7 +36,9 @@ def show(user_id):
 
 def update(user_id):
     users = User.query
-    return render_template("/User/update.html", title=f"Tabla de Usuarios {user_id}", back_url=url_for('user_bp.index'), search_key_word="Ri",users=users)
+    form = UserForm(request.form)
+
+    return render_template("/User/update.html", title=f"Editar Usuario", back_url=url_for('user_bp.index'), form=form, users=users)
 
 
 def delete(user_id):

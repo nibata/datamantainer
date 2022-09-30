@@ -1,33 +1,40 @@
-{% with search_key_word=search_key_word %}
 {% include "User/index.html"%}
-{% endwith %}
 
 {% block content %}
 <div class="modal" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="userModalLabel">New message</h5>
-                <a href="{{ back_url }}" class="btn-close" aria-label="Close"></a>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="userModalLabel">{{ title }}</h5>
+        <a href="{{ back_url }}" class="btn-close" aria-label="Close"></a>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="{{url_for('user_bp.store')}}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+          {% for field in form %}
+          <div class="form-group row">
+            {{ field.label(class="col-sm-2 col-form-label") }}
+            <div class="col-sm-10">
+              {{ field(class="form-control") }}
             </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Recipient:</label>
-                        <input type="text" class="form-control" id="recipient-name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Message:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Send message</button>
-                <a href="{{ back_url }}" class="btn btn-secondary">Cerrar</a>
-            </div>
-        </div>
+            <span>
+              {% if field.errors %}
+                {% for error in field.errors %}
+                  {{ error }}
+                {% endfor %}
+              {% endif %}
+            </span>
+          </div>
+          <br>
+          {% endfor %}
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <a href="{{ back_url }}" class="btn btn-secondary">Cerrar</a>
+          </div>
+        </form>
+      </div>   
     </div>
+  </div>
 </div>
 
 {% endblock %}
@@ -35,12 +42,11 @@
 
 {% block scripts %}
 
-    <script>
-    $(document).ready(function () {
-        $("#userModal").modal("show")
-
-    })
-    </script>
+  <script>
+  $(document).ready(function () {
+    $("#userModal").modal("show")
+  })
+  </script>
 
 
 {% endblock %}
