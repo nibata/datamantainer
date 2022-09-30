@@ -36,7 +36,7 @@ def show(user_id):
 
 def update(user_id):
     users = User.query
-    return render_template("/User/update.html", title=f"Tabla de Usuarios {user_id}", users=users)
+    return render_template("/User/update.html", title=f"Tabla de Usuarios {user_id}", back_url=url_for('user_bp.index'), users=users)
 
 
 def delete(user_id):
