@@ -1,4 +1,6 @@
+{% with search_key_word=search_key_word %}
 {% include "User/index.html"%}
+{% endwith %}
 
 {% block content %}
 <div class="modal" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">

@@ -12,7 +12,7 @@ import plotly.express as px
 
 def index():
     users = User.query
-    return render_template("/User/index.html", title="Tabla de Usuarios", store_url=url_for('user_bp.store'), users=users)
+    return render_template("/User/index.html", title="Tabla de Usuarios", store_url=url_for('user_bp.store'), search_key_word="", users=users)
 
 
 def store():
@@ -36,7 +36,7 @@ def show(user_id):
 
 def update(user_id):
     users = User.query
-    return render_template("/User/update.html", title=f"Tabla de Usuarios {user_id}", back_url=url_for('user_bp.index'), users=users)
+    return render_template("/User/update.html", title=f"Tabla de Usuarios {user_id}", back_url=url_for('user_bp.index'), search_key_word="Ri",users=users)
 
 
 def delete(user_id):
