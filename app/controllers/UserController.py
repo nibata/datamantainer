@@ -45,7 +45,8 @@ def update(user_id):
 
 
 def delete(user_id):
-    ...
+    flash(f"Crear lógica de borrado de registro.\nID Usuario: {user_id}", category="danger")
+    return redirect(url_for("user_bp.index"))
 
 
 def show_all():
