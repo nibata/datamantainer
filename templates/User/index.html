@@ -11,8 +11,8 @@
     <script>
       const updateUrl = (prev, query) => {
         var search_text_aux = prev.substring(prev.indexOf('search='), prev.indexOf('&'));
-        var search_text = (search_text_aux == "/users" ? "" : search_text_aux)
-        document.getElementById("create_user_form").href = "{{ store_url }}?" + search_text;
+        var search_text = (search_text_aux == "/users" ? "" : "?" + search_text_aux)
+        document.getElementById("create_user_form").href = "{{ store_url }}" + search_text;
         return prev + (prev.indexOf('?') >= 0 ? '&' : '?') + new URLSearchParams(query).toString();
       };
       

@@ -17,7 +17,10 @@ def index():
 
 def store():
     form = UserForm(request.form)
+    
     search_param = request.args.get("search")
+    if search_param is None:
+        search_param = ""
 
     if request.method == "POST":
         if form.validate():
