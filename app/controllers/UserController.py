@@ -12,7 +12,7 @@ import plotly.express as px
 
 def index():
     users = User.query
-    return render_template("/User/index.html", title="Tabla de Usuarios", store_url=url_for('user_bp.store'), search_key_word="", users=users)
+    return render_template("Views/User/index.html", title="Tabla de Usuarios", store_url=url_for('user_bp.store'), search_key_word="", users=users)
 
 
 def store():
@@ -30,7 +30,7 @@ def store():
         else:
             flash("Error en la validación de datos", category="danger")
 
-    return render_template("/User/store.html", title="Crear Usuario", back_url=url_for('user_bp.index'), search_key_word=search_param, form=form)
+    return render_template("Views/User/store.html", title="Crear Usuario", back_url=url_for('user_bp.index'), search_key_word=search_param, form=form)
 
 
 def show(user_id):
@@ -38,10 +38,10 @@ def show(user_id):
 
 
 def update(user_id):
-    users = User.query
-    form = UserForm(request.form)
+    user = User.query.filter_by(id=user_id).first()
+    form = UserForm(obj=user)
 
-    return render_template("/User/update.html", title=f"Editar Usuario", back_url=url_for('user_bp.index'), form=form, users=users)
+    return render_template("Views/User/update.html", title=f"Editar Usuario", back_url=url_for('user_bp.index'), form=form)
 
 
 def delete(user_id):
@@ -64,4 +64,4 @@ def show_graph():
     fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
-    return render_template('/User/show_graph.html', graphJSON=graphJSON)
+    return render_template('Views/User/show_graph.html', graphJSON=graphJSON)

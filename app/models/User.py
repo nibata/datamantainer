@@ -8,18 +8,20 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, info={"label": "Name"}, nullable=False)
+    last_name = db.Column(db.String, info={"label": "Last Name"}, nullable=False)
     age = db.Column(db.Integer, info={"label": "Age"})
     address = db.Column(db.String(120), info={"label": "Address"})
-    last_name = db.Column(db.String, info={"label": "Last Name"}, nullable=False)
+    
 
     @property
     def serialize(self):
         return {
                     "id": self.id,
                     "name": self.name,
+                    "last_name": self.last_name,
                     "age": self.age,
                     "address": self.address,
-                    "last_name": self.last_name
+                    
                }
 
     @staticmethod
