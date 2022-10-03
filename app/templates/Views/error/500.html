@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Error de servidor{% endblock %}
+{% block content %}
+  <h1>Error 500</h1>
+  <h3>Hay problemas con la estrella de la muerte. Estamos trabajando para solucionarlo.</h3>
+  <p><a href="{{ url_for('default_bp.index') }}">Mejor vuelve al inicio</a>
+  <br>
+  <img src="https://lh4.googleusercontent.com/-o_Ubo9sdCvY/TY5oT50SyZI/AAAAAAAAAIU/53y9xDBKGTU/s1600/deathstardisaster.jpg"/>
+{% endblock %}
