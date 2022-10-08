@@ -16,6 +16,7 @@ from controllers.errors import page_not_found, server_error
 app = Flask(__name__)
 app.config.from_object("config")
 
+
 # Seguridad para formularios
 csrf = CSRFProtect(app)
 
