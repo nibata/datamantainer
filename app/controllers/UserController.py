@@ -34,7 +34,9 @@ def store():
 
 
 def show(user_id):
-    ...
+    # de momento estoy utilizando este controlador para chequear si el validador de password esta funcionando
+    user = User.query.filter_by(id=user_id).first()
+    return str(user.check_password("pwd_test"))
 
 
 def update(user_id):

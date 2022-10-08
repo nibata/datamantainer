@@ -1,5 +1,7 @@
+from enum import unique
 from services.database import db
 from wtforms_alchemy import ModelForm
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class User(db.Model):
@@ -11,7 +13,22 @@ class User(db.Model):
     last_name = db.Column(db.String, info={"label": "Last Name"}, nullable=False)
     age = db.Column(db.Integer, info={"label": "Age"})
     address = db.Column(db.String(120), info={"label": "Address"})
+    email = db.Column(db.String(120), info={"label": "E-mail"}, nullable=False, unique=True)
+    password = db.Column(db.String(120), info={"label": "Password"}, nullable=False)
+        
+
+    @staticmethod
+    def set_password(password):
+        return generate_password_hash(password)
     
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
+    
+
+    def __repr__(self):
+        return '<User {}>'.format(self.email)
+
 
     @property
     def serialize(self):
@@ -21,6 +38,7 @@ class User(db.Model):
                     "last_name": self.last_name,
                     "age": self.age,
                     "address": self.address,
+                    "email": self.email,
                     
                }
 
@@ -28,6 +46,7 @@ class User(db.Model):
     def get_searchable_fields():
         return (User.name,
                 User.last_name,
+                User.email,
                 User.age)
 
 
