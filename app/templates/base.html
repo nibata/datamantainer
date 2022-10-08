@@ -20,7 +20,12 @@
         </button>
         <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
+            {% if current_user.is_authenticated %}
+              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Bienvenido {{ current_user.name }}!</h5>
+            {% else %}
+              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Iniciar Sesión</h5>
+            {% endif %}
+
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">

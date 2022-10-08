@@ -1,0 +1,52 @@
+{% extends "base.html"%}
+
+{% block content %}
+<div class="modal" id="loginModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">{{ title }}</h5>
+        <a href="{{ url_for('default_bp.index') }}" class="btn-close" aria-label="Close"></a>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="{{url_for('login_bp.login')}}">
+          {{ form.hidden_tag() }}
+          {% for field in form %}
+          <div class="form-group row">
+            {{ field.label(class="col-sm-2 col-form-label") }}
+            <div class="col-sm-10">
+              {{ field(class="form-control") }}
+            </div>
+            <span>
+              {% if field.errors %}
+                {% for error in field.errors %}
+                  {{ error }}
+                {% endfor %}
+              {% endif %}
+            </span>
+          </div>
+          <br>
+          {% endfor %}
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <a href="{{url_for('default_bp.index')}}" class="btn btn-secondary">Cerrar</a>
+          </div>
+        </form>
+      </div>   
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+  <script>
+  $(document).ready(function () {
+    $("#loginModal").modal("show")
+  })
+  </script>
+
+
+{% endblock %}
