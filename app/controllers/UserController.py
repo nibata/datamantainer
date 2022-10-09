@@ -1,6 +1,6 @@
 import sys
 from flask import render_template, redirect, url_for, request, abort, flash, current_app
-from models.User import User, UserForm, LoginForm
+from models.User import User, UserForm
 from services.database import db
 from modules.DataTableShow import show_all_model
 from modules.DataGraphShow import get_data_plotly_example

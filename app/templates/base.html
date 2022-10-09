@@ -14,7 +14,7 @@
 
     <nav class="navbar navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Offcanvas dark navbar</a>
+        <a class="navbar-brand" href="#">Proyecto DataMantainer</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,7 +23,7 @@
             {% if current_user.is_authenticated %}
               <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Bienvenido {{ current_user.name }}!</h5>
             {% else %}
-              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Iniciar Sesión</h5>
+              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Sesión no iniciada</h5>
             {% endif %}
 
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -54,23 +54,28 @@
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-success" type="submit">Search</button>
             </form>
+            <br>
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('login_bp.logout') }}" class="btn btn-danger">Cerrar Sesión</a>
+            {% else %}
+            <a href="{{ url_for('login_bp.login') }}" class="btn btn-success">Iniciar Sesión</a>
+            {% endif %}
           </div>
         </div>
       </div>
     </nav>
 
-
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>            
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-    <div>
+    <div style="width:90%; margin:0 auto;">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>            
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
       {% block modal_form %}{% endblock %}
       {% block content %}{% endblock %}
     </div>

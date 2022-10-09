@@ -21,12 +21,12 @@
         columns: [
           { id: "name", name: "Name", width: "15%"},
           { id: "last_name", name: "Last Name", width: "15%"},
-          { id: "age", name: "Age", width: "5%"},
-          { id: "address", name: "Address", sort: false, width: "15%"},
-          { id: "email", name: "E-mail", sort: false, width: "25%"},
+          { id: "age", name: "Age", width: "7%"},
+          { id: "address", name: "Address", sort: false, width: "24%"},
+          { id: "email", name: "E-mail", sort: false, width: "15%"},
           { id: "id", name: "Action", sort: false, formatter: (cell, row) => {
               return gridjs.html("<a id='edit_user_form' href='" + cell + "/edit' class='btn btn-primary btn-sm' role='button'> Edit </a> <a href='" + cell + "/delete' class='btn btn-primary btn-sm' role='button'> Delete </a>");
-            }, width: "10%"},
+            }, width: "9%"},
         ],
 
         language: {

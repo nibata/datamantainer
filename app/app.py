@@ -30,7 +30,7 @@ migrate = Migrate(app, db)
 app.register_blueprint(default_bp, url_prefix="/")
 app.register_blueprint(user_bp, url_prefix="/users")
 app.register_blueprint(group_bp, url_prefix="/groups")
-app.register_blueprint(login_bp, url_prefix="/login")
+app.register_blueprint(login_bp, url_prefix="/user_manager")
 
 # Páginas de error
 app.register_error_handler(404, page_not_found)
