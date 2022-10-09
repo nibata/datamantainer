@@ -1,16 +1,15 @@
-import sys
-from flask import render_template, redirect, url_for, request, abort, flash, current_app
+from flask import render_template, redirect, url_for, request, flash, current_app
 from models.User import User, UserForm
+
 from services.database import db
+
 from modules.DataTableShow import show_all_model
 from modules.DataGraphShow import get_data_plotly_example
 
-import pandas as pd
-import json
-import plotly
-import plotly.express as px
+from flask_login import login_required
 
 
+@login_required
 def index():
     users = User.query
     return render_template("Views/User/index.html", title="Tabla de Usuarios", store_url=url_for('user_bp.store'), search_key_word="", users=users)
@@ -43,7 +42,7 @@ def show(user_id):
 def update(user_id):
     user = User.query.filter_by(id=user_id).first()
     form = UserForm(obj=user)
-    return render_template("Views/User/update.html", title=f"Editar Usuario", back_url=url_for('user_bp.index'), form=form)
+    return render_template("Views/User/update.html", title=f"Editar Usuario", back_url=url_for('user_bp.index'), form=form, user_id=user_id)
 
 
 def delete(user_id):

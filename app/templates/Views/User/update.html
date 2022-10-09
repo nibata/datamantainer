@@ -9,7 +9,7 @@
         <a href="{{ back_url }}" class="btn-close" aria-label="Close"></a>
       </div>
       <div class="modal-body">
-        <form method="POST" action="{{url_for('user_bp.store')}}">
+        <form method="POST" action="{{url_for('user_bp.update', user_id=user_id)}}">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
           {% for field in form %}
           <div class="form-group row">
@@ -17,7 +17,7 @@
             <div class="col-sm-10">
               {{ field(class="form-control") }}
             </div>
-            <span>
+            <span class="text-warning">
               {% if field.errors %}
                 {% for error in field.errors %}
                   {{ error }}

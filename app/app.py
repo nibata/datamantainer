@@ -1,5 +1,5 @@
 from distutils.log import debug
-from flask import Flask, render_template, url_for
+from flask import Flask
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect
 
@@ -39,7 +39,7 @@ app.register_error_handler(500, server_error)
 
 # Manejo de Sesiones login
 login_manager.init_app(app)
-#login_manager.login_view(url_for("login_bp.login"))
+login_manager.login_view = "/user_manager/login"
 
 
 if __name__ == "__main__":

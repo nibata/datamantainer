@@ -21,7 +21,7 @@
         <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
           <div class="offcanvas-header">
             {% if current_user.is_authenticated %}
-              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Bienvenido {{ current_user.name }}!</h5>
+              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Hola {{ current_user.name }}!</h5>
             {% else %}
               <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Sesión no iniciada</h5>
             {% endif %}
