@@ -2,13 +2,27 @@
 
 {% block content %}
 <h1>Plotly Example</h1>
+<h2>Country:</h2>
+<input type="text" id="fname" name="fname" class="form-control" onChange="callback_example(this.value)"/>
 <div id="chart" class="chart"></div>
 {% endblock %}
 
 {% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+
+<script>
+  function callback_example(selection){
+    $.getJSON({
+      url: "/users/callback_graph_example" , data: {"data": selection}, success: function(result){
+        Plotly.newPlot("chart", result, {});
+      }
+    })
+  }
+</script>
+
 <script type='text/javascript'>
   var graphs = {{graphJSON | safe}};
-  Plotly.plot('chart',graphs,{});
+  Plotly.newPlot('chart',graphs,{});
 </script>
 {% endblock %}

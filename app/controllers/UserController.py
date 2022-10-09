@@ -3,6 +3,7 @@ from flask import render_template, redirect, url_for, request, abort, flash, cur
 from models.User import User, UserForm, LoginForm
 from services.database import db
 from modules.DataTableShow import show_all_model
+from modules.DataGraphShow import get_data_plotly_example
 
 import pandas as pd
 import json
@@ -57,13 +58,12 @@ def show_all():
 
 
 def show_graph():
-    #users = User.query.all()
-
-    #df = pd.DataFrame([user.serialize for user in users])
-    df = pd.DataFrame({"Fruit": ["Apple", "Orange", "Bananas" , "Apple", "Oranges", "Bananas"],
-                       "Amount": [4, 1, 2, 2, 4, 5],
-                       "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"]})
-    fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
-    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    graphJSON = get_data_plotly_example()
 
     return render_template('Views/User/show_graph.html', graphJSON=graphJSON)
+
+
+def callback_graph_example():
+    graphJSON = get_data_plotly_example(country=request.args.get("data"))
+    return graphJSON
+
