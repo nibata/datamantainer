@@ -1,3 +1,4 @@
+import email
 from flask import render_template, redirect, url_for, request, flash, current_app
 from models.User import User, UserForm
 
@@ -24,7 +25,18 @@ def store():
 
     if request.method == "POST":
         if form.validate():
-            flash(request.form, category="info")
+            user = User(name=request.form["name"],
+                        age=request.form["age"],
+                        address=request.form["address"],
+                        last_name=request.form["last_name"],
+                        email=request.form["email"],
+                        password=User.set_password(request.form["password"]))
+            
+            db.session.add(user)
+            db.session.commit()
+            
+            flash(f"Se agregó la cuenta {request.form['email']}", category="info")
+            
             return redirect(url_for("user_bp.index"))
 
         else:
@@ -41,7 +53,36 @@ def show(user_id):
 
 def update(user_id):
     user = User.query.filter_by(id=user_id).first()
-    form = UserForm(obj=user)
+    
+    if request.method == "POST":
+        form = UserForm(request.form)
+
+        # Creo flag para chequear si el password es el mismo del usuario o se está actualizando. 
+        same_pwd = user.password == request.form["password"]
+        same_mail = request.form["email"] == user.email
+        mail_original = user.email
+
+        if form.validate() or (form.errors.get("email", False) and same_mail):
+            
+            user.name = request.form["name"],
+            user.last_name = request.form["last_name"],
+            user.age = request.form["age"],
+            user.address = request.form["address"],
+            user.email = request.form["email"],
+            user.password = request.form["password"] if same_pwd else User.set_password(request.form["password"])
+            
+            db.session.commit()
+            
+            if same_mail:
+                flash(f"Se actualizó el registro de {user.email}", category="success")
+            else:
+                flash(f"Se actualizó el registro de {request.form['email']} (anteriormente {mail_original})", category="success")
+
+            return redirect(url_for("user_bp.index"))
+    
+    elif request.method == "GET":
+        form = UserForm(obj=user)
+
     return render_template("Views/User/update.html", title=f"Editar Usuario", back_url=url_for('user_bp.index'), form=form, user_id=user_id)
 
 

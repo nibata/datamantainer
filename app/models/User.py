@@ -4,7 +4,7 @@ from services.database import db
 from wtforms_alchemy import ModelForm
 from wtforms.validators import DataRequired
 from werkzeug.security import generate_password_hash, check_password_hash
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, widgets
 
 
 class User(db.Model):
@@ -17,7 +17,7 @@ class User(db.Model):
     age = db.Column(db.Integer, info={"label": "Age"})
     address = db.Column(db.String(120), info={"label": "Address"})
     email = db.Column(db.String(120), info={"label": "E-mail"}, nullable=False, unique=True)
-    password = db.Column(db.String(120), info={"label": "Password"}, nullable=False)
+    password = db.Column(db.String(120), info={"label": "Password", "widget": widgets.PasswordInput(hide_value=False)}, nullable=False)
         
 
     @staticmethod
