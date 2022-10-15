@@ -47,8 +47,7 @@ def store():
 
 def show(user_id):
     # de momento estoy utilizando este controlador para chequear si el validador de password esta funcionando
-    user = User.query.filter_by(id=user_id).first()
-    return str(user.check_password("pwd_test"))
+    pass
 
 
 def update(user_id):
@@ -87,8 +86,17 @@ def update(user_id):
 
 
 def delete(user_id):
-    flash(f"Crear lógica de borrado de registro.\nID Usuario: {user_id}", category="danger")
-    return redirect(url_for("user_bp.index"))
+    user = User.query.filter_by(id=user_id).first()
+
+    if request.method == "POST":
+        db.session.delete(user)
+        db.session.commit()
+        
+        flash(f"Se ha eliminado al usuario {user.email}", category="info")
+        
+        return redirect(url_for("user_bp.index"))
+
+    return render_template("Views/User/delete.html", title=f"Eliminar Usuario", back_url=url_for('user_bp.index'), user_id=user_id, mail=user.email)
 
 
 def show_all():

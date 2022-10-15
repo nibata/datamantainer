@@ -1,0 +1,38 @@
+{% include "Views/User/index.html"%}
+
+{% block content %}
+<div class="modal" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="userModalLabel">{{ title }}</h5>
+        <a href="{{ back_url }}" class="btn-close" aria-label="Close"></a>
+      </div>
+      <div class="modal-body">
+        <p>Está por eliminar al usuario {{ mail }}.</p>
+        <p>¿Está seguro que desea continuar?</p>
+        <form method="POST" action="{{url_for('user_bp.delete', user_id=user_id)}}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a href="{{ back_url }}" class="btn btn-secondary">Cancelar</a>
+          </div>
+        </form>
+      </div>   
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+  <script>
+  $(document).ready(function () {
+    $("#userModal").modal("show")
+  })
+  </script>
+
+
+{% endblock %}

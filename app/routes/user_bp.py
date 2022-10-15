@@ -12,7 +12,7 @@ user_bp.route("/<int:user_id>", methods=["GET"])(show)
 
 user_bp.route("/<int:user_id>/edit", methods=["POST", "GET"])(update)
 
-user_bp.route("/<int:user_id>/delete", methods=["POST", "GET", "DELETE"])(delete)
+user_bp.route("/<int:user_id>/delete", methods=["POST", "GET"])(delete)
 
 user_bp.route("/data", methods=["GET"])(show_all)
 
