@@ -12,7 +12,7 @@ def load_user(user_id):
 
 
 def login():
-    title = "Iniciar Sesión"
+    title = "Login"
     if not current_user.is_authenticated:
         form = LoginForm()
 
@@ -22,7 +22,7 @@ def login():
             if user and user.check_password(form.password.data):
                 login_user(user)
 
-                flash('Bienvenido', category="success")
+                flash('Welcome', category="success")
 
                 return redirect(url_for("default_bp.index"))
 
@@ -33,17 +33,17 @@ def login():
 
                 #return redirect(next or url_for('index'))
             else:
-                flash("Mail o Password erroneos", category="danger")
+                flash("The password or the email are wrong. Please try again.", category="danger")
 
         return render_template('Views/Login/login.html', form=form, title=title)
     
     else:
-        flash("Ya está autenticado.", category="info")
+        flash("You are already loged in.", category="info")
         return redirect(url_for("default_bp.index"))
 
 
 
 def logout():
     logout_user()
-    flash('Sesión cerrada', category="info")
+    flash('Loged out', category="info")
     return redirect(url_for("default_bp.index"))

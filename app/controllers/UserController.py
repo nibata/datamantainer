@@ -13,7 +13,7 @@ from flask_login import login_required
 @login_required
 def index():
     users = User.query
-    return render_template("Views/User/index.html", title="Tabla de Usuarios", store_url=url_for('user_bp.store'), search_key_word="", users=users)
+    return render_template("Views/User/index.html", title="Users Table", store_url=url_for('user_bp.store'), search_key_word="", users=users)
 
 
 def store():
@@ -35,14 +35,14 @@ def store():
             db.session.add(user)
             db.session.commit()
             
-            flash(f"Se agregó la cuenta {request.form['email']}", category="info")
+            flash(f"The User {request.form['email']} has been created.", category="info")
             
             return redirect(url_for("user_bp.index"))
 
         else:
-            flash("Error en la validación de datos", category="danger")
+            flash("Error at validating data.", category="danger")
 
-    return render_template("Views/User/store.html", title="Crear Usuario", back_url=url_for('user_bp.index'), search_key_word=search_param, form=form)
+    return render_template("Views/User/store.html", title="Create User", back_url=url_for('user_bp.index'), search_key_word=search_param, form=form)
 
 
 def show(user_id):
@@ -73,16 +73,16 @@ def update(user_id):
             db.session.commit()
             
             if same_mail:
-                flash(f"Se actualizó el registro de {user.email}", category="success")
+                flash(f"The user {user.email} has been updated", category="success")
             else:
-                flash(f"Se actualizó el registro de {request.form['email']} (anteriormente {mail_original})", category="success")
+                flash(f"The user {request.form['email']} has been updated (the previous mail was {mail_original})", category="success")
 
             return redirect(url_for("user_bp.index"))
     
     elif request.method == "GET":
         form = UserForm(obj=user)
 
-    return render_template("Views/User/update.html", title=f"Editar Usuario", back_url=url_for('user_bp.index'), form=form, user_id=user_id)
+    return render_template("Views/User/update.html", title=f"Edit User", back_url=url_for('user_bp.index'), form=form, user_id=user_id)
 
 
 def delete(user_id):
@@ -92,11 +92,11 @@ def delete(user_id):
         db.session.delete(user)
         db.session.commit()
         
-        flash(f"Se ha eliminado al usuario {user.email}", category="info")
+        flash(f"The user {user.email} has been removed", category="info")
         
         return redirect(url_for("user_bp.index"))
 
-    return render_template("Views/User/delete.html", title=f"Eliminar Usuario", back_url=url_for('user_bp.index'), user_id=user_id, mail=user.email)
+    return render_template("Views/User/delete.html", title=f"Delete User", back_url=url_for('user_bp.index'), user_id=user_id, mail=user.email)
 
 
 def show_all():

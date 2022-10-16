@@ -14,16 +14,16 @@
 
     <nav class="navbar navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Proyecto DataMantainer</a>
+        <a class="navbar-brand" href="#">Project DataMantainer</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
           <div class="offcanvas-header">
             {% if current_user.is_authenticated %}
-              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Hola {{ current_user.name }}!</h5>
+              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Hello {{ current_user.name }}!</h5>
             {% else %}
-              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Sesión no iniciada</h5>
+              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">You are not loged in.</h5>
             {% endif %}
 
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -56,9 +56,9 @@
             </form>
             <br>
             {% if current_user.is_authenticated %}
-            <a href="{{ url_for('login_bp.logout') }}" class="btn btn-danger">Cerrar Sesión</a>
+            <a href="{{ url_for('login_bp.logout') }}" class="btn btn-danger">Logout</a>
             {% else %}
-            <a href="{{ url_for('login_bp.login') }}" class="btn btn-success">Iniciar Sesión</a>
+            <a href="{{ url_for('login_bp.login') }}" class="btn btn-success">Login</a>
             {% endif %}
           </div>
         </div>

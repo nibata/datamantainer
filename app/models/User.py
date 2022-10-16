@@ -6,6 +6,7 @@ from wtforms_alchemy import ModelForm
 from wtforms.validators import DataRequired
 from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms import StringField, PasswordField, BooleanField, widgets
+from wtforms.validators import InputRequired, EqualTo
 
 
 class User(db.Model):
@@ -84,13 +85,14 @@ class UserForm(ModelForm):
     class Meta:
         model = User
 
-    # Se agrega campo de reapeat_password con el propósito de confirmar el password en caso de cambio.
-    repeat_password = PasswordField("Repeat Password")
+    # Se agrega campo de confirm_password con el propósito de confirmar el password en caso de cambio.
+    password = PasswordField("Password", [InputRequired(), EqualTo('confirm_password', message='Passwords must match')])
+    confirm_password = PasswordField("Confirm Password")
 
     # Esto fragmento de código no es necesario para que funcione
     # Lo que hace es asegurar el orden de los campos dado que al agregar el campo repeat_password queda 
     # en al comienzo del formulario en lugar del al final como es requerido.
-    __order = ("name", "last_name", "email", "age", "address", "password", "repeat_password")
+    __order = ("name", "last_name", "email", "age", "address", "password", "confirm_password")
 
     def __iter__(self):
         fields = list(super(UserForm, self).__iter__())
@@ -102,4 +104,4 @@ class UserForm(ModelForm):
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
-    remember_me = BooleanField('Recuérdame')
+    remember_me = BooleanField('Remember me')

@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% block title %}Página no encotrada{% endblock %}
+{% block title %}Error 404{% endblock %}
 {% block content %}
   <h1>Error 404</h1>
-  <h3>Estos no son ni los droides ni la página que estas buscando.</h3>
-  <p><a href="{{ url_for('default_bp.index') }}">Mejor vuelve al inicio</a>
+  <h3>This aren't the droids nor the page you are looking for.</h3>
+  <p><a href="{{ url_for('default_bp.index') }}">Please come back to the home page.</a>
   <br>
   <img src="https://conclave-brighton.co.uk/wp-content/uploads/2019/10/disguise.jpg"/>
 {% endblock %}

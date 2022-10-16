@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>{{ title }}</h1>
-    <a id="create_user_form" href="{{ store_url }}" class="btn btn-primary">Crear </a>
+    <a id="create_user_form" href="{{ store_url }}" class="btn btn-primary">New </a>
     <div id="table"></div>
 {% endblock %}
 
@@ -31,16 +31,16 @@
 
         language: {
           "search": {
-            "placeholder": "🔍 Buscar..."
+            "placeholder": "🔍 Search..."
           },
-          "pagination": {
+          /*"pagination": {
             "previous": "Previo",
             "next": "Siguiente",
             "of": "de",
             "to": "al",
             "showing": "Mostrando",
             "results": () => "Resultados"
-          }
+          }*/
         },
 
         server: {
