@@ -61,8 +61,9 @@ def update(user_id):
         same_mail = request.form["email"] == user.email
         mail_original = user.email
 
-        if form.validate() or (form.errors.get("email", False) and same_mail):
-            
+        if form.validate() or \
+           (len(form.errors) == 1 and same_pwd and "Passwords must match" in form.errors.get("password", [])) or \
+           ("Already exists." in form.errors.get("email", []) and same_mail and (same_pwd) or (request.form["password"] == request.form["confirm_password"])):
             user.name = request.form["name"],
             user.last_name = request.form["last_name"],
             user.age = request.form["age"],
@@ -77,7 +78,7 @@ def update(user_id):
             else:
                 flash(f"The user {request.form['email']} has been updated (the previous mail was {mail_original})", category="success")
 
-            return redirect(url_for("user_bp.index"))
+            return redirect(url_for("user_bp.index"))        
     
     elif request.method == "GET":
         form = UserForm(obj=user)

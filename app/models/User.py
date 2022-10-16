@@ -86,7 +86,7 @@ class UserForm(ModelForm):
         model = User
 
     # Se agrega campo de confirm_password con el propósito de confirmar el password en caso de cambio.
-    password = PasswordField("Password", [InputRequired(), EqualTo('confirm_password', message='Passwords must match')])
+    password = PasswordField("Password", [InputRequired(), EqualTo('confirm_password', message='Passwords must match')], widget=widgets.PasswordInput(hide_value=False))
     confirm_password = PasswordField("Confirm Password")
 
     # Esto fragmento de código no es necesario para que funcione
