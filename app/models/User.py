@@ -1,4 +1,5 @@
 from enum import unique
+from timeit import repeat
 from flask_wtf import FlaskForm
 from services.database import db
 from wtforms_alchemy import ModelForm
@@ -82,7 +83,21 @@ class User(db.Model):
 class UserForm(ModelForm):
     class Meta:
         model = User
-        
+
+    # Se agrega campo de reapeat_password con el propósito de confirmar el password en caso de cambio.
+    repeat_password = PasswordField("Repeat Password")
+
+    # Esto fragmento de código no es necesario para que funcione
+    # Lo que hace es asegurar el orden de los campos dado que al agregar el campo repeat_password queda 
+    # en al comienzo del formulario en lugar del al final como es requerido.
+    __order = ("name", "last_name", "email", "age", "address", "password", "repeat_password")
+
+    def __iter__(self):
+        fields = list(super(UserForm, self).__iter__())
+        get_field = lambda field_id: next((field for field in fields if field.id == field_id))
+
+        return (get_field(field_id) for field_id in self.__order)
+
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired()])
