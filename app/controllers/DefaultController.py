@@ -3,4 +3,4 @@ from flask import render_template, redirect, url_for, request, abort, flash, cur
 
 def index():
     current_app.logger.info("HELLO WORLD!")
-    return render_template('Views/default/index.html')
+    return render_template('views/default/index.html')

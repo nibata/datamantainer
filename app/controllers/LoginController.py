@@ -35,7 +35,7 @@ def login():
             else:
                 flash("The password or the email are wrong. Please try again.", category="danger")
 
-        return render_template('Views/Login/login.html', form=form, title=title)
+        return render_template('views/Login/login.html', form=form, title=title)
     
     else:
         flash("You are already loged in.", category="info")

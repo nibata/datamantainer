@@ -13,7 +13,7 @@ from flask_login import login_required
 @login_required
 def index():
     users = User.query
-    return render_template("Views/User/index.html", title="Users Table", store_url=url_for('user_bp.store'), search_key_word="", users=users)
+    return render_template("views/User/index.html", title="Users Table", store_url=url_for('user_bp.store'), search_key_word="", users=users)
 
 
 def store():
@@ -42,7 +42,7 @@ def store():
         else:
             flash("Error at validating data.", category="danger")
 
-    return render_template("Views/User/store.html", title="Create User", back_url=url_for('user_bp.index'), search_key_word=search_param, form=form)
+    return render_template("views/User/store.html", title="Create User", back_url=url_for('user_bp.index'), search_key_word=search_param, form=form)
 
 
 def show(user_id):
@@ -83,7 +83,7 @@ def update(user_id):
     elif request.method == "GET":
         form = UserForm(obj=user)
 
-    return render_template("Views/User/update.html", title=f"Edit User", back_url=url_for('user_bp.index'), form=form, user_id=user_id)
+    return render_template("views/User/update.html", title=f"Edit User", back_url=url_for('user_bp.index'), form=form, user_id=user_id)
 
 
 def delete(user_id):
@@ -97,7 +97,7 @@ def delete(user_id):
         
         return redirect(url_for("user_bp.index"))
 
-    return render_template("Views/User/delete.html", title=f"Delete User", back_url=url_for('user_bp.index'), user_id=user_id, mail=user.email)
+    return render_template("views/User/delete.html", title=f"Delete User", back_url=url_for('user_bp.index'), user_id=user_id, mail=user.email)
 
 
 def show_all():
@@ -109,7 +109,7 @@ def show_all():
 def show_graph():
     graphJSON = get_data_plotly_example()
 
-    return render_template('Views/User/show_graph.html', graphJSON=graphJSON)
+    return render_template('views/User/show_graph.html', graphJSON=graphJSON)
 
 
 def callback_graph_example():
