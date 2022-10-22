@@ -11,3 +11,7 @@ Para migraciones:
 
  - `flask db migrate -m "MENSAJE"`
  - `flask db updrade`
+
+Con la base de datos creada se puede utilizar el script `faker_data.py` para crear datos de prueba. Por ejemplo si se queren crear 100 registros para la tabla user (tabla creada con los comandos de migración) de deje ejecutar el siguiente script:
+
+`python faker_data.py 100`
