@@ -2,7 +2,7 @@ import email
 import random
 import sys
 from faker import Faker
-from models.User import User
+from app_test.models.User import User
 from config import SQLALCHEMY_DATABASE_URI
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
