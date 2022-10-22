@@ -1,5 +1,5 @@
 from flask import Blueprint
-from controllers.DefaultController import index
+from ..controllers.DefaultController import index
 
 default_bp = Blueprint("default_bp", __name__)
 

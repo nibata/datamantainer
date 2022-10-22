@@ -1,4 +1,4 @@
-from services.database import db
+from ..services.database import db
 
 
 class Group(db.Model):
@@ -8,6 +8,7 @@ class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     code = db.Column(db.String)
     description = db.Column(db.String)
+    
 
     @property
     def serialize(self):

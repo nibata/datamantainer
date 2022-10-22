@@ -1,5 +1,5 @@
 from flask import Blueprint
-from controllers.GroupController import index, store, show, update, delete
+from ..controllers.GroupController import index, store, show, update, delete
 
 group_bp = Blueprint('group_bp', __name__)
 

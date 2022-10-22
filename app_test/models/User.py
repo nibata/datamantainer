@@ -1,7 +1,7 @@
 from enum import unique
 from timeit import repeat
 from flask_wtf import FlaskForm
-from services.database import db
+from ..services.database import db
 from wtforms_alchemy import ModelForm
 from wtforms.validators import DataRequired
 from werkzeug.security import generate_password_hash, check_password_hash

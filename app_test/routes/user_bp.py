@@ -1,6 +1,6 @@
 from crypt import methods
 from flask import Blueprint
-from controllers.UserController import index, store, show, update, delete, show_all, show_graph, callback_graph_example
+from ..controllers.UserController import index, store, show, update, delete, show_all, show_graph, callback_graph_example
 
 user_bp = Blueprint("user_bp", __name__)
 
