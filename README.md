@@ -1,7 +1,7 @@
 # DataMantainer
 Mantenedor de base de datos utilizando flask y postgres
 
-Para correr la aplicacion se deben crear las siguiente variables de entorno:
+Para correr la aplicacion se deben crear las siguiente variables de entorno (pueden ser configuradas mediante archivo `.env`):
 
  - **DB_URI**: contiene el string de conexión a base de datos
  - **SECRET_KEY**: llave secreta utilizada en los formularios en el uso de la librería csrf
