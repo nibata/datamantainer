@@ -21,3 +21,5 @@ Para ejecutar la aplicación:
  - `flask run` configurando la variable de entorn **FALSK_APP** a una aplicación individual
  - `python run.py` que corre multiples aplicaciones mediante `werkzeug.serving.run_simple` (por defecto está solamente expuesto a `127.0.0.1:5000`)
  - `gunicorn run:application -b 0.0.0.0` para ejecutar multiples aplicaciones mediante **GUNICORN**
+
+Para ejecutar con docker-compose, dado que estoy utilizando postgres y procesador M1 es necesario ejecutar `export DOCKER_DEFAULT_PLATFORM=linux/amd64`

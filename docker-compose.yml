@@ -1,0 +1,27 @@
+version: '3.8'
+
+volumes:
+  data:
+
+services:
+  web:
+    build: .
+    command: gunicorn run:application -b 0.0.0.0
+    ports:
+      - 8000:8000
+    environment:
+      - DB_URI=postgresql://postgres:postgrespw@postgres:5432/flask_app
+      - SECRET_KEY="TO DREAM AN IMPOSSIBLE DREAM, TO FIGHT AN UNBEATABLE FOE, TO BEAR WITH UNBEARABLE SORROW, AND TO RUN WHERE THE BRAVE DARE NOT GO"
+      - FLASK_DEBUG=1
+    depends_on:
+      - "postgres"
+
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=postgrespw
+      - POSTGRES_DB=flask_app
+    ports:
+      - 5432:5432
+    volumes:
+      - data:/var/lib/postgresql
