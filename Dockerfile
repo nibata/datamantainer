@@ -12,6 +12,5 @@ ENV FLASK_APP run_single_app.py
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
-RUN flask db upgrade
 
 COPY . .
