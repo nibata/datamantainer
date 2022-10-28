@@ -1,5 +1,6 @@
 venv/
 .env
+.DS_Store
 .idea/
 __pycache__/
 datamantainer.code-workspace
