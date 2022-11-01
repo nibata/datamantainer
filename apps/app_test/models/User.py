@@ -11,7 +11,7 @@ from wtforms.validators import InputRequired, EqualTo
 
 class User(db.Model):
     __tablename__ = "users"
-    __table_args__ = {"schema": "test_schema"}
+    __table_args__ = {"schema": "authentication"}
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, info={"label": "Name"}, nullable=False)
@@ -70,8 +70,7 @@ class User(db.Model):
     def get_searchable_fields():
         return (User.name,
                 User.last_name,
-                User.email,
-                User.age)
+                User.email)
 
 
     @staticmethod
