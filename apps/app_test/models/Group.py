@@ -6,7 +6,7 @@ class Group(db.Model):
     __table_args__ = {"schema": "authentication"}
 
     id = db.Column(db.Integer, primary_key=True)
-    code = db.Column(db.String)
+    code = db.Column(db.String, unique=True)
     description = db.Column(db.String)
     
 
