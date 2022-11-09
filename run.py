@@ -1,5 +1,17 @@
+"""
+        _ _           _                                      _ _                      
+       (_| |         | |         ____                       (_| |                     
+  _ __  _| |__   __ _| |_ __ _  / __ \  __ _ _ __ ___   __ _ _| |  ___ ___  _ __ ___  
+ | '_ \| | '_ \ / _` | __/ _` |/ / _` |/ _` | '_ ` _ \ / _` | | | / __/ _ \| '_ ` _ \ 
+ | | | | | |_) | (_| | || (_| | | (_| | (_| | | | | | | (_| | | || (_| (_) | | | | | |
+ |_| |_|_|_.__/ \__,_|\__\__,_|\ \__,_|\__, |_| |_| |_|\__,_|_|_(_\___\___/|_| |_| |_|
+                                \____/  __/ |                                         
+                                       |___/                                          
+ nibata@gmail.com
+"""
+
 from werkzeug.serving import run_simple
 from app import application
 
-if __name__ == '__main__':
-    run_simple(hostname='127.0.0.1', port=5000, application=application)
+if __name__ == "__main__":
+    run_simple(hostname="127.0.0.1", port=5000, application=application)

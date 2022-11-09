@@ -35,11 +35,11 @@ def create_fake_users(n, create_user_admin=True):
 
     if create_user_admin:
         user_dummy = User(name="Nicolás",
-                        age=33,
-                        address="Holanda 434 depto 62 Providencia Santiago",
-                        last_name="Bacquet",
-                        email="admin@gmail.com",
-                        password=User.set_password("a1b2-3"))
+                          age=33,
+                          address="Holanda 434 depto 62 Providencia Santiago",
+                          last_name="Bacquet",
+                          email="admin@gmail.com",
+                          password=User.set_password("a1b2-3"))
         db.session.add(user_dummy)
 
     db.session.commit()
