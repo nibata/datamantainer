@@ -6,7 +6,7 @@ on:
       - "master"
 
 env:
-  DB_URI: postgresql://postgres:postgrespw@localhost:55000/datamantainer_app
+  DB_URI: ${{ secret.DB_URI_FLASK_TEST }}
   FLASK_APP: run_single_app.py
   SECRET_KEY: "SOME RANDOM TEXT"
   FLASK_DEBUG: 1
