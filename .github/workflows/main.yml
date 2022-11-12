@@ -1,0 +1,27 @@
+name: Continuous Integration
+on: [push]
+
+env:
+  DB_URI: postgresql://postgres:postgrespw@localhost:55000/datamantainer_app
+  FLASK_APP: run_single_app.py
+  SECRET_KEY: "SOME RANDOM TEXT"
+  FLASK_DEBUG: 1
+  TESTING: True
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.10]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python all python version
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: x64
+      - name: Install dependencies
+        run: pip install -r requirements.txt 
+      - name: Run Test
+        run: python -m unittest
