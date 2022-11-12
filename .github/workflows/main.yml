@@ -3,7 +3,7 @@ name: Continuous Integration
 on:
   push:
     branches:
-      - "main"
+      - "master"
 
 env:
   DB_URI: postgresql://postgres:postgrespw@localhost:55000/datamantainer_app
