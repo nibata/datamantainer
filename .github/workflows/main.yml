@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "master"
+  workflow_dispatch:
 
 env:
   DB_URI: ${{ secrets.DB_URI_FLASK_TEST }}
