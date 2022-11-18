@@ -5,6 +5,7 @@ from flask_wtf.csrf import CSRFProtect
 
 from .services.database import db
 from .services.login_manager import login_manager
+from .services.redis_service import redis_client
 
 from .routes.user_bp import user_bp
 from .routes.group_bp import group_bp
@@ -40,3 +41,6 @@ app.register_error_handler(500, server_error)
 # Manejo de Sesiones login
 login_manager.init_app(app)
 login_manager.login_view = "/user_manager/login"
+
+# Manejo de redis (variables almacendas en cache)
+redis_client.init_app(app)

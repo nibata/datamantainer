@@ -6,6 +6,7 @@ Para correr la aplicacion se deben crear las siguiente variables de entorno (pue
  - **DB_URI**: contiene el string de conexión a base de datos
  - **SECRET_KEY**: llave secreta utilizada en los formularios en el uso de la librería csrf
  - **FLASK_APP**: script python que inicia el servidor si se desea iniciar el servidor mediante comando `flask run` (de momento solo logro hacerlo funcionar con aplicaciones individuales, para este caso `run_single_app.py`)
+ - **REDIS_URL**: contiene el string de conexión a Redis
 
 Para migraciones:
 
