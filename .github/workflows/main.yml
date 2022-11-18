@@ -8,6 +8,7 @@ on:
 
 env:
   DB_URI: ${{ secrets.DB_URI_FLASK_TEST }}
+  REDIS_URL: ${{ secrets.REDIS_URL_FLASK_TEST }}
   FLASK_APP: run_single_app.py
   SECRET_KEY: "SOME RANDOM TEXT"
   FLASK_DEBUG: 1
