@@ -2,19 +2,22 @@ version: '3.8'
 
 volumes:
   data:
+  redis_data:
 
 services:
   web:
     build: .
-    command: gunicorn run:application -b 0.0.0.0
+    command: sh -c "python database_migrate.py && python faker_data.py 100 && gunicorn run:application -b 0.0.0.0"
     ports:
       - 8000:8000
     environment:
       - DB_URI=postgresql://postgres:postgrespw@postgres:5432/datamantainer_app
       - SECRET_KEY="TO DREAM AN IMPOSSIBLE DREAM, TO FIGHT AN UNBEATABLE FOE, TO BEAR WITH UNBEARABLE SORROW, AND TO RUN WHERE THE BRAVE DARE NOT GO"
       - FLASK_DEBUG=1
+      - REDIS_URL=redis://@localhost:6379/0
     depends_on:
       - "postgres"
+      - "redis"
 
   postgres:
     image: postgres:latest
@@ -25,3 +28,10 @@ services:
       - 5432:5432
     volumes:
       - data:/var/lib/postgresql
+
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/data

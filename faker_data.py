@@ -73,4 +73,4 @@ if __name__ == '__main__':
         sys.exit(1)
     print(sys.argv)
     create_fake_users(int(sys.argv[1]), True)
-    #create_fake_roles()
+    create_fake_roles()
