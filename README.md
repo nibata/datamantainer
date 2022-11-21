@@ -11,7 +11,7 @@ Para correr la aplicacion se deben crear las siguiente variables de entorno (pue
 Para migraciones:
 
  - `flask db migrate -m "MENSAJE"`
- - `flask db updrade`
+ - `flask db upgrade`
 
 Con la base de datos creada se puede utilizar el script `faker_data.py` para crear datos de prueba. Por ejemplo si se queren crear 100 registros para la tabla user (tabla creada con los comandos de migración) de deje ejecutar el siguiente script:
 
