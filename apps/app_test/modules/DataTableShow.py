@@ -2,16 +2,23 @@ from flask import request
 
 
 def show_all_model(Model, db):
-    """
-    Da lógica para depliegue de tablas utilizadando gridjs para que se haga de manera lazy.
+    """ Da lógica para depliegue de tablas utilizadando gridjs para que se haga de manera lazy.
     Las lógicas que permiten son la de ordenar, paginar, y buscar.
+    
+    Parameters
+    ----------
+    Model : SqlAchemy Model
+        Clase que define el modelo de base de datos definidos en capeta models del proyecto.
+    db : SqlAlchemy DB instance
+        Instancia de la base de datos.
 
-    :param Model: SqlAchemy Model, Clase que define el modelo de base de datos definidos en capeta models del proyecto.
-    :param db: SqlAlchemy DB instance, instancia de la base de datos.
-
-    :return: Dict, key: data.   value: datos resultantes de la consulta serializados en una estructura de dictionario
-                   key: total.  value: total de regestros resultantes de la consulta.  
+    Returns
+    -------
+    Dict
+        key: data.   value: datos resultantes de la consulta serializados en una estructura de dictionario
+        key: total.  value: total de regestros resultantes de la consulta.  
     """
+    
     
     query = Model.query
 
