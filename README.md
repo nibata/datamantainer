@@ -29,6 +29,6 @@ Para ejecutar la aplicación:
  - `python run.py` que corre multiples aplicaciones mediante `werkzeug.serving.run_simple` (por defecto está solamente expuesto a `127.0.0.1:5000`)
  - `gunicorn run:application -b 0.0.0.0` para ejecutar multiples aplicaciones mediante **GUNICORN**
 
-Para ejecutar con docker-compose, dado que estoy utilizando postgres y procesador M1 es necesario ejecutar `export DOCKER_DEFAULT_PLATFORM=linux/amd64`
+Para ejecutar con docker-compose, dado que estoy utilizando postgres y procesador M1 es necesario ejecutar `export DOCKER_DEFAULT_PLATFORM=linux/amd64` y una vez terminado `unset DOCKER_DEFAULT_PLATFORM`
 
 **Obs:** Desde el commit del 2022-11-09 se agregó la estructura necesaria para ejecutar *test unitarios* mediante la librería `unittest` de python por lo que ejecutar `python -m unittest` ejecuta los test unitarios. Esto está pensado para que cada aplicación tenga sus propios test unitarios.

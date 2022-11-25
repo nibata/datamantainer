@@ -7,7 +7,7 @@ volumes:
 services:
   web:
     build: .
-    command: sh -c "python database_migrate.py && python faker_data.py 100 && gunicorn run:application -b 0.0.0.0"
+    command: sh -c "python database_migrate.py && python faker_data.py 10 && gunicorn run:apps_pool -b 0.0.0.0"
     ports:
       - 8000:8000
     environment:
