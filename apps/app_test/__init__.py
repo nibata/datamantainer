@@ -1,11 +1,12 @@
 from distutils.log import debug
-from flask import Flask
+from flask import Flask, request
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect
 
 from .services.database import db
 from .services.login_manager import login_manager
 from .services.redis_service import redis_client
+from .services.translate import babel
 
 from .routes.user_bp import user_bp
 from .routes.group_bp import group_bp
@@ -44,3 +45,7 @@ login_manager.login_view = "/user_manager/login"
 
 # Manejo de redis (variables almacendas en cache)
 redis_client.init_app(app)
+
+# Manejo de internacionalización
+
+babel.init_app(app)

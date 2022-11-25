@@ -17,6 +17,12 @@ Con la base de datos creada se puede utilizar el script `faker_data.py` para cre
 
 `python faker_data.py 100`
 
+Para traducciones se requiere generar los archivos de Babel:
+
+ - `pybabel extract -F babel.cfg -o messages.pot .`
+ - `pybabel init -i messages.pot -d translations -l es`
+ - `pybabel compile -d translations`
+
 Para ejecutar la aplicación:
 
  - `flask run` configurando la variable de entorn **FALSK_APP** a una aplicación individual

@@ -1,10 +1,17 @@
-from flask import render_template, redirect, url_for, request, abort, flash, current_app
+from flask import render_template, request, current_app
 from ..services.redis_service import redis_client
+from ..services.translate import format_date, gettext
+from datetime import date
 
 
 def index():
     current_app.logger.info("HELLO WORLD!")
-    
+
+    d = date(2022, 11, 24)
+    formated_date = format_date(d)
+
+    word = gettext("word")
+
     """test_var_redis = redis_client.get("var_test")
     current_app.logger.info(test_var_redis is None)
     if test_var_redis is None:
@@ -23,4 +30,4 @@ def index():
     current_app.logger.info(test_var_redis)
     #redis_client.delete("var_test")"""
 
-    return render_template('views/default/index.html')
+    return render_template('views/default/index.html', formated_date=formated_date, word=word)
