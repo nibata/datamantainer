@@ -13,6 +13,7 @@ env:
   SECRET_KEY: "SOME RANDOM TEXT"
   FLASK_DEBUG: 1
   TESTING: True
+  BABEL_DEFAULT_LOCALE: en
 
 jobs:
   build:
