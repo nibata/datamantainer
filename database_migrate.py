@@ -1,8 +1,7 @@
-from faker import Faker
-from config import SQLALCHEMY_DATABASE_URI
+from apps.app_test import app
 from dotenv import load_dotenv
 from flask_migrate import upgrade
-from apps.app_test import app
+from config import SQLALCHEMY_DATABASE_URI
 
 load_dotenv()
 
