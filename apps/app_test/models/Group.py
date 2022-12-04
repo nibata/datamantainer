@@ -17,6 +17,18 @@ class Group(db.Model):
         return f"<Group {self.code}>"
 
 
+    def get_group_id(self) -> str:
+        """retorna el id del grupo
+
+        Returns
+        -------
+        str
+            id del grupo
+        """
+
+        return self.id
+
+
     @property
     def serialize(self) -> Dict:
         """Objeto group serializado como dict

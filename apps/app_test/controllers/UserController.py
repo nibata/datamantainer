@@ -1,5 +1,6 @@
+from ..models.Group import Group
 from ..services.database import db
-from ..models.User import User, UserForm
+from ..models.User import User, UserForm, users_groups
 from flask import render_template, redirect, url_for, request, flash, current_app
 
 from ..modules.DataTableShow import show_all_model
@@ -32,6 +33,17 @@ def store():
                         password=User.set_password(request.form["password"]))
             
             db.session.add(user)
+            
+            db.session.commit()
+
+            groups = Group.query
+            groups = groups.filter(Group.code == "default")
+            
+            for group in groups:
+                group_id = group.get_group_id()
+
+            db.engine.execute(users_groups.insert(), user_id=user.id, group_id=group_id)
+
             db.session.commit()
             
             flash(f"The User {request.form['email']} has been created.", category="info")
