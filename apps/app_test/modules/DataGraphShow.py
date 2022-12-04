@@ -1,8 +1,8 @@
 import flask
-import plotly
-import plotly.express as px
-import pandas as pd
 import json
+import plotly
+import pandas as pd
+import plotly.express as px
 
 
 def get_data_plotly_example(country:str="United Kingdom"):

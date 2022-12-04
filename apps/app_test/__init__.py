@@ -4,14 +4,14 @@ from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect
 
 from .services.database import db
-from .services.login_manager import login_manager
-from .services.redis_service import redis_client
 from .services.translate import babel
+from .services.redis_service import redis_client
+from .services.login_manager import login_manager
 
 from .routes.user_bp import user_bp
 from .routes.group_bp import group_bp
-from .routes.default_bp import default_bp
 from .routes.login_bp import login_bp
+from .routes.default_bp import default_bp
 
 from .controllers.errors import page_not_found, server_error
 

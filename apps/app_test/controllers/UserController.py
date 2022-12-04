@@ -1,8 +1,6 @@
-import email
-from flask import render_template, redirect, url_for, request, flash, current_app
-from ..models.User import User, UserForm
-
 from ..services.database import db
+from ..models.User import User, UserForm
+from flask import render_template, redirect, url_for, request, flash, current_app
 
 from ..modules.DataTableShow import show_all_model
 from ..modules.DataGraphShow import get_data_plotly_example
@@ -13,6 +11,7 @@ from flask_login import login_required
 @login_required
 def index():
     users = User.query
+    
     return render_template("views/User/index.html", title="Users Table", store_url=url_for('user_bp.store'), search_key_word="", users=users)
 
 
@@ -46,7 +45,6 @@ def store():
 
 
 def show(user_id):
-    # de momento estoy utilizando este controlador para chequear si el validador de password esta funcionando
     pass
 
 
@@ -114,5 +112,5 @@ def show_graph():
 
 def callback_graph_example():
     graphJSON = get_data_plotly_example(country=request.args.get("data"))
+    
     return graphJSON
-

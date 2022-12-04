@@ -2,7 +2,7 @@ from flask import request
 
 
 def show_all_model(Model, db):
-    """ Da lógica para depliegue de tablas utilizadando gridjs para que se haga de manera lazy.
+    """ Da lógica para depliegue de tablas utilizado por gridjs para que se haga de manera lazy.
     Las lógicas que permiten son la de ordenar, paginar, y buscar.
     
     Parameters

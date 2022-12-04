@@ -1,7 +1,7 @@
-from flask import render_template, request, current_app
+from datetime import date
 from ..services.redis_service import redis_client
 from ..services.translate import format_date, gettext
-from datetime import date
+from flask import render_template, request, current_app
 
 
 def index():
