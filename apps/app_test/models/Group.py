@@ -1,6 +1,8 @@
 from ..services.database import db
 
-
+################################################################################################
+# MODELO GROUP (TABLA groups)                                                                  #
+################################################################################################
 class Group(db.Model):
     __tablename__ = 'groups'
     __table_args__ = {"schema": "authentication"}
