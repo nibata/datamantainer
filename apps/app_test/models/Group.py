@@ -1,3 +1,4 @@
+from typing import Dict
 from ..services.database import db
 
 ################################################################################################
@@ -12,8 +13,19 @@ class Group(db.Model):
     description = db.Column(db.String)
     
 
+    def __repr__(self) -> str:
+        return f"<Group {self.code}>"
+
+
     @property
-    def serialize(self):
+    def serialize(self) -> Dict:
+        """Objeto group serializado como dict
+
+        Returns
+        -------
+        Dict
+            Representacion en diccionario del objeto
+        """
         return {
                     'id': self.id,
                     'code': self.code,
