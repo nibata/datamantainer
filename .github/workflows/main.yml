@@ -16,7 +16,7 @@ env:
   BABEL_DEFAULT_LOCALE: en
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
