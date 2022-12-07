@@ -9,9 +9,10 @@ class BaseTestClass(unittest.TestCase):
         self.client = self.app.test_client()
         # Crea un contexto de aplicación
         with self.app.app_context():
-            # TODO Ver cimo usar alembic en este punt
+            # TODO Ver como usar alembic en este punt
             # db.create_all()
             ...
+
 
     def tearDown(self):
         with self.app.app_context():

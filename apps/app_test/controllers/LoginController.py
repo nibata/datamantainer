@@ -44,5 +44,5 @@ def login():
 
 def logout():
     logout_user()
-    flash('Loged out', category="info")
+    flash('Logged out', category="info")
     return redirect(url_for("default_bp.index"))
