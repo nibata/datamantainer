@@ -26,7 +26,7 @@ Para traducciones se requiere generar los archivos de Babel:
  - Genera los archivos de traducción a modificarse manualmente: `pybabel init -i messages.pot -d translations -l es`
  - Compila los archivos de traducción: `pybabel compile -d translations`
 
-Los textos a ser traducidos son los identificados por el método `gettext([TEXTO])` en los archivos `.py` y `\{\{ \_\(\[TEXTO\]\) \}\}` en los archivos `.html` (más informacion revisar la documentación de [BABEL](https://python-babel.github.io/flask-babel/))
+Los textos a ser traducidos son los identificados por el método `gettext([TEXTO])` en los archivos `.py` y ` \{\{ \_\(\[TEXTO\]\) \}\} ` en los archivos `.html` (más informacion revisar la documentación de [BABEL](https://python-babel.github.io/flask-babel/))
 
 Para ejecutar la aplicación:
 
