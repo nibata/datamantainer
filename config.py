@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from distutils.debug import DEBUG
 
 
-# Cargo manualmente las variables de entorno. No se porque en ocaciones funciona sin cargarlo y en otras no
+# Cargo manualmente las variables de entorno. No se porqué en ocaciones funciona sin cargarlo y en otras no
 load_dotenv()
 
 

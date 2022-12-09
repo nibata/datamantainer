@@ -7,11 +7,14 @@ Para correr la aplicacion se deben crear las siguiente variables de entorno (pue
  - **SECRET_KEY**: llave secreta utilizada en los formularios en el uso de la librería csrf
  - **FLASK_APP**: script python que inicia el servidor si se desea iniciar el servidor mediante comando `flask run` (de momento solo logro hacerlo funcionar con aplicaciones individuales, para este caso `run_single_app.py`)
  - **REDIS_URL**: contiene el string de conexión a Redis
+ - **FLASK_DEBUG**: realmente es opcional esta variable, asignar 1 para `True` (activa modo debug de flask) y 0 para `False` (no activa el modo debug de flask)
+ - **TESTING**: Variable que permite generar tests unitarios en Flask (reconoce la carpeta test de la aplicación) `True` solo para desarrollo, `False` para ambientes productivos
+ - **BABEL_DEFAULT_LOCALE**: Define cual es el idioma por defecto en el caso de no encontrar uno que se ajuste dentro del listado habilitado. Por defecto `en`
 
 Para migraciones:
 
- - `flask db migrate -m "MENSAJE"`
- - `flask db upgrade`
+ - Para generar los scripts de actualización de la base de datos: `flask db migrate -m "MENSAJE"`
+ - Para aplicar los cambios en base de datos: `flask db upgrade`
 
 Con la base de datos creada se puede utilizar el script `faker_data.py` para crear datos de prueba. Por ejemplo si se queren crear 100 registros para la tabla user (tabla creada con los comandos de migración) de deje ejecutar el siguiente script:
 
@@ -19,9 +22,11 @@ Con la base de datos creada se puede utilizar el script `faker_data.py` para cre
 
 Para traducciones se requiere generar los archivos de Babel:
 
- - `pybabel extract -F babel.cfg -o messages.pot .`
- - `pybabel init -i messages.pot -d translations -l es`
- - `pybabel compile -d translations`
+ - Identifica los textos a ser traducidos: `pybabel extract -F babel.cfg -o messages.pot .`
+ - Genera los archivos de traducción a modificarse manualmente: `pybabel init -i messages.pot -d translations -l es`
+ - Compila los archivos de traducción: `pybabel compile -d translations`
+
+Los textos a ser traducidos son los identificados por el método `gettext([TEXTO])` en los archivos `.py` y `{{ _([TEXTO]) }}` en los archivos `.html` (más informacion revisar la documentación de [BABEL](https://python-babel.github.io/flask-babel/))
 
 Para ejecutar la aplicación:
 
