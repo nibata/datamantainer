@@ -11,7 +11,7 @@ services:
     ports:
       - 8000:8000
     environment:
-      - DB_URI=postgresql://postgres:postgrespw@postgres:5432/datamantainer_app
+      - DB_URI=postgresql://postgres:postgrespw@localhost:5432/datamantainer_app
       - SECRET_KEY="TO DREAM AN IMPOSSIBLE DREAM, TO FIGHT AN UNBEATABLE FOE, TO BEAR WITH UNBEARABLE SORROW, AND TO RUN WHERE THE BRAVE DARE NOT GO"
       - FLASK_DEBUG=1
       - REDIS_URL=redis://@localhost:6379/0
