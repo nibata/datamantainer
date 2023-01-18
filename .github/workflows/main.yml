@@ -7,7 +7,12 @@ on:
   workflow_dispatch:
 
 env:
-  DB_URI: ${{ secrets.DB_URI_FLASK_TEST }}
+  DB_DRIVER: ${{ secrets.DB_DRIVER_TEST }}
+  DB_USER: ${{ secrets.DB_USER_TEST }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD_TEST }}
+  DB_HOST: ${{ secrets.DB_HOST_TEST }}
+  DB_PORT: ${{ secrets.DB_PORT_TEST }}
+  DB_NAME: ${{ secrets.DB_NAME_TEST }}
   REDIS_URL: ${{ secrets.REDIS_URL_FLASK_TEST }}
   FLASK_APP: run_single_app.py
   SECRET_KEY: "SOME RANDOM TEXT"
@@ -18,17 +23,42 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
+    
     strategy:
       matrix:
         python-version: ["3.10"]
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: ${{ secrets.DB_USER_TEST }}
+          POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD_TEST }}
+          POSTGRES_DB: ${{ secrets.DB_NAME_TEST }}
+        ports:
+          - 5432:${{ secrets.DB_PORT_TEST }}
+          
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    
     steps:
       - uses: actions/checkout@v3
+      
       - name: Set up Python all python version
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
           architecture: x64
+      
       - name: Install dependencies
         run: pip install -r requirements.txt 
+
+      - name: Create/Update DB_DRIVER
+        run: flask db upgrade
+
       - name: Run Test
         run: python -m unittest
