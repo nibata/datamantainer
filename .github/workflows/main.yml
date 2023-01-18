@@ -60,5 +60,8 @@ jobs:
       - name: Create/Update DB_DRIVER
         run: flask db upgrade
 
+      - name: Populate Fake Data
+        run: python faker_data.py 10
+
       - name: Run Test
         run: python -m unittest
