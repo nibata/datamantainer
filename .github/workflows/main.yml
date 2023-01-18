@@ -11,7 +11,7 @@ env:
   DB_USER: ${{ secrets.DB_USER_TEST }}
   DB_PASSWORD: ${{ secrets.DB_PASSWORD_TEST }}
   DB_HOST: ${{ secrets.DB_HOST_TEST }}
-  DB_PORT: 5432
+  DB_PORT: ${{ secrets.DB_PORT_TEST }}
   DB_NAME: ${{ secrets.DB_NAME_TEST }}
   REDIS_URL: ${{ secrets.REDIS_URL_FLASK_TEST }}
   FLASK_APP: run_single_app.py
@@ -36,7 +36,7 @@ jobs:
           POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD_TEST }}
           POSTGRES_DB: ${{ secrets.DB_NAME_TEST }}
         ports:
-          - 5432:${{ secrets.DB_PORT_TEST }}
+          - 5432:$DB_PORT
           
         # Set health checks to wait until postgres has started
         options: >-
