@@ -36,7 +36,7 @@ jobs:
           POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD_TEST }}
           POSTGRES_DB: ${{ secrets.DB_NAME_TEST }}
         ports:
-          - 5432:$DB_PORT
+          - 5432:${{ env.DB_PORT }}
           
         # Set health checks to wait until postgres has started
         options: >-
