@@ -11,7 +11,7 @@ env:
   DB_USER: ${{ secrets.DB_USER_TEST }}
   DB_PASSWORD: ${{ secrets.DB_PASSWORD_TEST }}
   DB_HOST: ${{ secrets.DB_HOST_TEST }}
-  DB_PORT: ${{ secrets.DB_PORT_TEST }}
+  DB_PORT: 5432
   DB_NAME: ${{ secrets.DB_NAME_TEST }}
   REDIS_URL: ${{ secrets.REDIS_URL_FLASK_TEST }}
   FLASK_APP: run_single_app.py
