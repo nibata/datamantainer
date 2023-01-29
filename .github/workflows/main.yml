@@ -66,4 +66,5 @@ jobs:
         run: python faker_data.py 10
 
       - name: Run Test
+        working-directory: ./flask-apps
         run: python -m unittest
