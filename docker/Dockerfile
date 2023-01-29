@@ -3,7 +3,7 @@ FROM python:3.10.8-slim-buster
 RUN apt-get update && apt-get install -y --no-install-recommends tk-dev && rm -r /var/lib/apt/lists/*
 RUN apt update -y && apt install -y build-essential libpq-dev
 
-WORKDIR /app
+WORKDIR /flask-apps/app
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1

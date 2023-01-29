@@ -58,9 +58,11 @@ jobs:
         run: pip install -r requirements.txt 
 
       - name: Create/Update DB_DRIVER
+        working-directory: ./flask-apps
         run: flask db upgrade
 
       - name: Populate Fake Data
+        working-directory: ./flask-apps
         run: python faker_data.py 10
 
       - name: Run Test
