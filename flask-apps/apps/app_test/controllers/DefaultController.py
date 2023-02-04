@@ -31,3 +31,12 @@ def index():
     #redis_client.delete("var_test")"""
 
     return render_template('views/default/index.html', formated_date=formated_date, word=word)
+    
+
+def sentry_test():
+    """controlador que creará un envento de error en sentry.io
+    """
+
+    division_by_zero = 1/0
+
+    return division_by_zero

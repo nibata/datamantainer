@@ -14,6 +14,7 @@ env:
   DB_PORT: ${{ secrets.DB_PORT_TEST }}
   DB_NAME: ${{ secrets.DB_NAME_TEST }}
   REDIS_URL: ${{ secrets.REDIS_URL_FLASK_TEST }}
+  SENTRY_DSN: ${{ secrets.SENTRY_DSN_TEST }}
   FLASK_APP: run_single_app.py
   SECRET_KEY: "SOME RANDOM TEXT"
   FLASK_DEBUG: 1

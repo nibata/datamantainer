@@ -1,5 +1,5 @@
+from flask import Flask
 from distutils.log import debug
-from flask import Flask, request
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect
 
@@ -14,6 +14,19 @@ from .routes.login_bp import login_bp
 from .routes.default_bp import default_bp
 
 from .controllers.errors import page_not_found, server_error
+
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
+
+from config import SENTRY_DSN
+
+
+# Configuración de SENTRY.IO para seguir errores de la aplicación
+sentry_sdk.init(
+    dsn=SENTRY_DSN,
+    integrations=[FlaskIntegration()],
+    traces_sample_rate=1.0,
+    send_default_pii=True)
 
 
 # Aplicación
