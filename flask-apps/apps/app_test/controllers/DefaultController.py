@@ -1,3 +1,4 @@
+import time
 from datetime import date
 from ..services.redis_service import redis_client
 from ..services.translate import format_date, gettext
@@ -42,7 +43,7 @@ def sentry_test():
 
     return division_by_zero
 
-import time
+
 def print_date_time():
     print("HOLAAAAAAAA ", time.strftime("%A, %d. %B %Y %I:%M:%S %p"))
 

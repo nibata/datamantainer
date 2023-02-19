@@ -7,6 +7,7 @@ from .services.database import db
 from .services.translate import babel
 from .services.redis_service import redis_client
 from .services.login_manager import login_manager
+from .services.apscheduler import scheduler
 
 from .routes.user_bp import user_bp
 from .routes.group_bp import group_bp
@@ -21,10 +22,6 @@ from sentry_sdk.integrations.flask import FlaskIntegration
 from config import SENTRY_DSN
 
 import atexit
-
-from .services.apscheduler import scheduler
-
-
 
 
 # Configuración de SENTRY.IO para seguir errores de la aplicación
@@ -69,10 +66,8 @@ redis_client.init_app(app)
 # Manejo de internacionalización
 babel.init_app(app)
 
-
-
-
+# Se inicia scheduler por background
 scheduler.start()
 
-# Shut down the scheduler when exiting the app
+## Se cierra el thread del scheduler cuando se cierra la app
 atexit.register(lambda: scheduler.shutdown())
