@@ -21,12 +21,11 @@ from sentry_sdk.integrations.flask import FlaskIntegration
 from config import SENTRY_DSN
 
 import atexit
-import time
-from apscheduler.schedulers.background import BackgroundScheduler
+
+from .services.apscheduler import scheduler
 
 
-def print_date_time():
-    print("HOLAAAAAAAA ", time.strftime("%A, %d. %B %Y %I:%M:%S %p"))
+
 
 # Configuración de SENTRY.IO para seguir errores de la aplicación
 sentry_sdk.init(
@@ -71,8 +70,8 @@ redis_client.init_app(app)
 babel.init_app(app)
 
 
-scheduler = BackgroundScheduler()
-scheduler.add_job(func=print_date_time, trigger="interval", seconds=5)
+
+
 scheduler.start()
 
 # Shut down the scheduler when exiting the app

@@ -3,6 +3,7 @@ from ..services.redis_service import redis_client
 from ..services.translate import format_date, gettext
 from flask import render_template, request, current_app
 
+from ..services.apscheduler import scheduler
 
 def index():
     current_app.logger.info("HELLO WORLD!")
@@ -40,3 +41,13 @@ def sentry_test():
     division_by_zero = 1/0
 
     return division_by_zero
+
+import time
+def print_date_time():
+    print("HOLAAAAAAAA ", time.strftime("%A, %d. %B %Y %I:%M:%S %p"))
+
+
+def register_test_job():
+    scheduler.add_job(func=print_date_time, trigger="interval", seconds=1)
+
+    return "Supuestamente registrado"
